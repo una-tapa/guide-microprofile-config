@@ -173,7 +173,7 @@ include::finish/resources/CustomConfigSource.json[tags=**]
 Custom configuration sources can be created by implementing the `org.eclipse.microprofile.config.spi.ConfigSource` interface and using the `java.util.ServiceLoader` mechanism.
 
 A [hotspot file=0]`CustomConfigSource.json` JSON file has already been created in the `resources` directory. This JSON file simulates a remote configuration resource in real life.
-This file contains 4 custom config properties and has an ordinal of [hotspot=0 file=2]`150`.
+This file contains 4 custom config properties and has an ordinal of [hotspot=2 file=0]`150`.
 To use these properties in the application, the data object needs to be transformed from this JSON file to the configuration for your application.
 
 To link this JSON file to your application and to implement the `ConfigSource` interface,
