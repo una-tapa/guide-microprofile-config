@@ -26,18 +26,14 @@ NOTE: This repository contains the guide documentation source. To view the guide
 Learn how to provide external configuration to microservices using MicroProfile Config.
 
 // =================================================================================================
-// What you'll learn
+// このガイドで学ぶこと
 // =================================================================================================
 
-== What you'll learn
-You will learn how to externalize and inject both static and dynamic configuration properties for microservices using MicroProfile Config.
+== このガイドで学ぶこと
 
-You will learn to aggregate multiple configuration sources, assign prioritization values to these sources, merge configuration values, and create custom configuration sources.
+このガイドでは、マイクロプロファイルの構成を使って、構成のプロパティを外部に定義し、静的に、または動的にマイクロサービスにインジェクトする方法を見ていきます。また複数の構成ソースを定義し、優先順位をつけてこれらの構成をマージする方法や、カスタム構成ソースを作る方法について学びます。
 
-The application that you will be working with is an `inventory` service which stores the information about various JVMs running on different hosts.
-Whenever a request is made to the `inventory` service to retrieve the JVM
-system properties of a particular host, the `inventory` service will communicate with the `system`
-service on that host to get these system properties. You will add configuration properties to simulate if a service is down for maintenance.
+このガイドで使うアプリケーションは `inventory` （在庫）サービスです。色々なホストで動いているJVMの情報を保管します。この `inventory` サービスに、特定のホストのシステムプロパティーを提供するようにというリクエストが送られると、`inventory` サービスは、そのホストの  `system` サービスと通信し、そのシステムプロパティーを取得します。このガイドでは、このサービスがメンテナンスのために停止しているときに、あたかもサービスが動いているようシミュレートするため、構成プロパティーを追加します。
 
 // =================================================================================================
 // Getting Started
@@ -46,13 +42,9 @@ service on that host to get these system properties. You will add configuration 
 [role=command]
 include::{common-includes}/gitclone.adoc[]
 
-=== Try what you'll build
+=== このガイドで作るもの
 
-The `finish` directory in the root of this guide contains the finished inventory application. Feel
-free to give it a try before you proceed.
-
-To try out the application, first navigate to the `finish` directory and then run the following
-Maven goals to build the application and run it inside Open Liberty:
+このガイドのrootディレクトリにある `finish` ディレクトリに、完成した `inventory` アプリケーションが入っています。学習前に、どのようなものを作っていくか、見てみましょう。アプリケーションを試してみるには、まず `finish` ディレクトリに移動し、下記のMavenのゴールを実行してアプリケーションをLibertyの上で動かしてみます。
 
 [role=command]
 ```
@@ -60,17 +52,17 @@ cd finish
 mvn install liberty:start-server
 ```
 
-After starting the application, you can access the following two microservices to test their availability:
+アプリーケーションをスタートしたあと、下記の２つのマイクロサービスにアクセスして、サービスが動いていることを確認します:
 
 * http://localhost:9080/system/properties[http://localhost:9080/system/properties^] retrieves the information for a specific host
 
 * http://localhost:9080/inventory/systems[http://localhost:9080/inventory/systems^] retrieves the information for a list of all previously registered hosts
 
-In addition, you can access a third microservice, which retrieves and aggregates all of the configuration properties and sources that have been added throughout this guide. This is available at:
+さらに３つ目のマイクロサービスがあります。これは、このガイドで追加されたすべての構成プロパティとソースをあわせて提供します。:
 
 * http://localhost:9080/config[http://localhost:9080/config^]
 
-Once you are done checking out the application, stop the Open Liberty server:
+アプリケーションが動いていることを確認したら、Libertyを停止してください。
 
 [role=command]
 ```
@@ -78,7 +70,7 @@ mvn liberty:stop-server
 ```
 
 // =================================================================================================
-// Ordering multiple configuration sources
+// 複数の構成ファイルの優先順位をつける
 // =================================================================================================
 == Ordering multiple configuration sources
 
